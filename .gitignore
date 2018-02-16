@@ -3,4 +3,5 @@ node_modules
 bower_components
 public
 build
-template-parts/_inlinejs
+template-parts/_inlinejs/
+*.log

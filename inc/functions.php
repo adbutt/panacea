@@ -70,8 +70,11 @@ if ( ! function_exists( 'panacea_comments' ) ) {
 	<?php }
 }
 /**
- * Disable the emoji's
+ * OPERATION CLEAN-UP
  */
+
+//Disable Emoji's
+
 function disable_emojis() {
     remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
     remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -82,8 +85,8 @@ function disable_emojis() {
     remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
     add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
     add_filter( 'wp_resource_hints', 'disable_emojis_remove_dns_prefetch', 10, 2 );
-   }
-   add_action( 'init', 'disable_emojis' );
+}
+add_action( 'init', 'disable_emojis' );
 
    /**
     * Filter function used to remove the tinymce emoji plugin.
@@ -117,12 +120,50 @@ function disable_emojis() {
    return $urls;
    }
 
-//Deregister wp-embed
+//Deregister wp-embed.js
 
    function my_deregister_scripts(){
     wp_deregister_script( 'wp-embed' );
     }
     add_action( 'wp_footer', 'my_deregister_scripts' );
+
+//Clean WP Header
+remove_action ('wp_head', 'rsd_link'); //Disable XML-RPC RSD link
+remove_action( 'wp_head', 'wlwmanifest_link'); //Remove wlwmanifest link
+remove_action( 'wp_head', 'wp_shortlink_wp_head'); //Remove shortlink
+remove_action('wp_head', 'rest_output_link_wp_head', 10); //Remove api.w.org relation link
+remove_action('wp_head', 'wp_oembed_add_discovery_links', 10); //Remove api.w.org relation link
+remove_action('template_redirect', 'rest_output_link_header', 11, 0); //Remove api.w.org relation link
+remove_action( 'wp_head', 'feed_links_extra', 3 ); //remove feed links
+remove_action( 'wp_head', 'feed_links', 2 ); //remove feed links
+
+//Remove WordPress version number
+function crunchify_remove_version() {
+	return '';
+}
+add_filter('the_generator', 'crunchify_remove_version');
+
+//remove query strings from static resources (js/css version no's)
+function panacea_cleanup_query_string( $src ){
+	$parts = explode( '?', $src );
+	return $parts[0];
+}
+add_filter( 'script_loader_src', 'panacea_cleanup_query_string', 15, 1 ); //remove from scripts
+add_filter( 'style_loader_src', 'panacea_cleanup_query_string', 15, 1 ); //remove from styles
+
+//Kill RSS Feeds
+function wpb_disable_feed() {
+    wp_die( __('No feed available,please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
+    }
+
+    add_action('do_feed', 'wpb_disable_feed', 1);
+    add_action('do_feed_rdf', 'wpb_disable_feed', 1);
+    add_action('do_feed_rss', 'wpb_disable_feed', 1);
+    add_action('do_feed_rss2', 'wpb_disable_feed', 1);
+    add_action('do_feed_atom', 'wpb_disable_feed', 1);
+    add_action('do_feed_rss2_comments', 'wpb_disable_feed', 1);
+    add_action('do_feed_atom_comments', 'wpb_disable_feed', 1);
+
 
 #-----------------------------------------------------------------
 # Customise Admin Area
