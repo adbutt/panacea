@@ -1,0 +1,193 @@
+// -----------------------------------------------------------
+// Site navigation desktop layout
+//
+// The main layout for the website navigation, for a desktop
+// devices only.
+// -----------------------------------------------------------
+$color-nav-links: #fff;
+$color-nav-dropdown-links: #333;
+$icon-arrow-right: '../img/chevron-right-dark.svg';
+$icon-arrow-down: '../img/chevron-down.svg';
+$icon-arrow-left: '../img/chevron-left-dark.svg';
+
+@media (min-width: $responsivenav) {
+  #nav {
+    // Set based on logo height, for example panacea logo is about 62px
+    // menu links height are 12px, so paddings are (60/2)-12:
+    padding-top: 1.7rem;
+    padding-bottom: 1.7rem;
+    float: right;
+
+    .menu-items {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+
+      // Dropdowns
+      ul {
+        position: absolute;
+        padding: 0;
+        background: #fff;
+
+        &.sub-menu {
+          padding-top: .5rem;
+          padding-bottom: .5rem;
+        }
+
+        li {
+          width: 100%;
+
+          // Prevent nav from flickering
+          &.menu-item-has-children {
+            a {
+              // Let's make space for the arrow
+              padding-right: 3.5rem;
+              margin-right: 0;
+              margin-bottom: 0;
+              width: 100%;
+            }
+          }
+        }
+
+        ul {
+          // Fix weird sub-level alignment bug if no borders set
+          transform: translateY(.3rem);
+        }
+
+        a {
+          padding: .8rem 1.5rem;
+          font-size: 1.4rem;
+          color: $color-nav-dropdown-links;
+
+          &:hover,
+          &:focus,
+          &:active,
+          &.highlighted {
+            color: $color-links;
+          }
+
+          &.disabled {
+            background: #fff;
+            color: #ccc;
+          }
+
+          span.sub-arrow {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            margin-top: 0;
+            text-indent: -9999px;
+            overflow: hidden;
+            background-image: url($icon-arrow-right);
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent;
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+
+      li {
+        float: left;
+
+        // Current and hover styles
+        // &.current_page_item {
+        //   a {
+        //     color: $color-links;
+        //   }
+        // }
+
+        // Prevent nav from flickering
+        &.menu-item-has-children {
+          margin-right: .8rem;
+
+          > a {
+            // Let's make space for the arrow
+            padding-right: 1.5rem;
+            margin-bottom: .8rem;
+          }
+        }
+
+        // a {
+        //   &:hover,
+        //   &:focus,
+        //   &:active,
+        //   &.highlighted,
+        //   &.current {
+        //     color: $color-links;
+        //   }
+        // }
+      }
+
+      &.sm-rtl li {
+        float: right;
+      }
+
+      ul li,
+      &.sm-rtl ul li,
+      &.sm-vertical li {
+        float: none;
+      }
+
+      // Main level
+      a {
+        white-space: nowrap;
+        color: $color-nav-links;
+        font-size: 15px;
+        padding: 12px;
+
+        &.disabled {
+          color: #bbb;
+        }
+
+        span.sub-arrow {
+          @include vertical-align();
+          text-indent: -9999px;
+          overflow: hidden;
+          margin-top: 0;
+          margin-right: 0;
+          right: 0;
+          background-image: url($icon-arrow-down);
+          background-repeat: no-repeat;
+          background-position: center;
+          color: transparent;
+          position: absolute;
+          height: 8px;
+          width: 8px;
+        }
+
+        &.highlighted span.sub-arrow:before {
+          display: none;
+        }
+      }
+
+      ul a,
+      &.sm-vertical a {
+        white-space: normal;
+      }
+
+      .sm-nowrap > li {
+        > a,
+        :not(ul) a {
+          white-space: nowrap;
+        }
+      }
+
+      > li > ul {
+        &:after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 0;
+          overflow: hidden;
+          border-style: dashed dashed solid;
+          top: -16px;
+          left: 31px;
+          border-width: 8px;
+          border-color: transparent transparent #fff;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+// ------------------------------------------------
+// Front page
+//
+// The most important page on the website goes here.
+// You can force the styles by defining them inside
+// the body.
+//
+// Please note: These are mostly for demo purposes
+// so feel free to remove everything in this file
+// and start over.
+// ------------------------------------------------
+
+body {
+  #page {
+    .site-content {
+      .slide {
+        &.slide-front {
+          background-position: center;
+          background-color: #ba1b0a;
+          position: relative;
+          min-height: 300px;
+
+          .shade {
+            opacity: 1;
+          }
+
+          .container {
+            padding-top: 30vh;
+            padding-bottom: 30vh;
+            position: relative;
+            z-index: 10;
+
+            .accent {
+              @extend %h3;
+              font-style: italic;
+              text-transform: lowercase;
+              font-weight: 700;
+              text-align: center;
+              margin: 0;
+              color: $color-links;
+            }
+
+            h1 {
+              color: #fff;
+              text-align: center;
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+
+        &.slide-front-content {
+          background: #fff;
+        }
+      }
+    }
+  }
+}
