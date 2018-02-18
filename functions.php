@@ -27,7 +27,32 @@ add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list'
  * Load textdomain and set a locale.
  */
 load_theme_textdomain( 'panacea', get_template_directory() . '/languages' );
-setlocale( LC_ALL, 'fi_FI.utf8' );
+
+/**
+ * Define content width in articles
+ */
+if ( ! isset( $content_width ) ) {
+	$content_width = 800;
+}
+
+/**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function _panacea_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', 'panacea' ),
+		'id'            => 'sidebar-1',
+		'description'   => esc_html__( 'Add widgets here.', 'panacea' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', '_panacea_widgets_init' );
+
 
 //Site Optimisation
 add_action( 'wp_enqueue_scripts', 'themerbasic_scripts' );
@@ -58,12 +83,16 @@ function panacea_scripts() {
 	//wp_enqueue_script( 'fface', get_theme_file_uri( 'templates/_inlinejs/fontfaceobserver.min.js' ), array(),null, true );
 	//wp_enqueue_script( 'afonts', get_theme_file_uri( 'templates/_inlinejs/asyncload-site-fonts.min.js' ), array(),null, true );
 	wp_enqueue_script( 'jquery', true );
-    wp_enqueue_script( 'scripts', get_theme_file_uri( 'public/js/all.min.js' ), array(), filemtime( get_theme_file_path( 'public/js/all.min.js' ) ), true );
-	wp_localize_script( 'scripts', 'screenReaderTexts', array(
-		'expandMenu'      => esc_html__( 'Open menu', 'panacea' ),
-		'collapseMenu'    => esc_html__( 'Close menu', 'panacea' ),
-		'expandSubMenu'   => '<span class="screen-reader-text">' . __( 'Open sub menu', 'panacea' ) . '</span>',
-		'collapseSubMenu' => '<span class="screen-reader-text">' . __( 'Close sub menu', 'panacea' ) . '</span>',
+    wp_enqueue_script( 'scripts', get_theme_file_uri( 'build/js/site.combined.min.js' ), array(), filemtime( get_theme_file_path( 'build/js/site.combined.min.js' ) ), true );
+
+    // Required comment-reply script
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+
+    wp_localize_script( 'scripts', 'screenReaderText', array(
+		'expand'      => esc_html__( 'Open child menu', 'panacea' ),
+		'collapse'    => esc_html__( 'Close child menu', 'panacea' ),
 	) );
 }
 add_action( 'wp_enqueue_scripts', 'panacea_scripts' );

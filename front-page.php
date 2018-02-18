@@ -15,30 +15,22 @@ $featured_image = '';
 if ( has_post_thumbnail() ) :
 	$featured_image = esc_url( wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ) );
 else :
-	$featured_image = esc_url( get_template_directory_uri() . '/public/img/default.jpg' );
+	$featured_image = esc_url( get_theme_file_uri( '/public/img/default.jpg' ));
 endif;
 
 get_header(); ?>
 
-<div class="slide slide-front" style="background-image:url('<?php echo $featured_image; ?>');">
+<div class="block block-front" style="background-image:url('<?php echo $featured_image; ?>');">
   <div class="shade shade-gradient"></div>
 
   <div class="container">
-    <p class="accent">
-      <?php
-        echo esc_html_e( 'Panacea ', 'panacea' );
-        echo esc_attr( PANACEA_VERSION, 'panacea' );
-      ?>
-    </p>
-    <h1><?php echo esc_html_e( 'a WordPress starter theme', 'panacea' ); ?></h1>
-  </div>
+  <h1><span class="accent"><?php echo esc_html_e( 'Panacea ', 'panacea' ); echo esc_attr( PANACEA_VERSION, 'panacea' ); ?></span><?php echo esc_html_e( 'a WordPress starter theme', 'panacea' ); ?></h1>  </div>
 </div>
 
-<div id="primary" class="content-area">
+<div id="content" class="content-area">
   <main id="main" class="site-main">
 
-    <div class="slide slide-front-content">
-
+    <div class="block">
       <div class="container">
 
         <?php if ( have_posts() ) {
@@ -52,7 +44,7 @@ get_header(); ?>
 
       </div><!-- .container -->
 
-    </div><!-- .slide.slide-front-content -->
+    </div><!-- .block -->
 
   </main><!-- #main -->
 </div><!-- #primary -->

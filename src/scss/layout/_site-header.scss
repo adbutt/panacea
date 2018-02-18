@@ -13,7 +13,7 @@
   width: 100%;
   z-index: 15;
 
-  @media(min-width: $responsivenav) {
+  @media (min-width: $responsivenav) {
     padding-top: 20px;
   }
 
@@ -22,47 +22,51 @@
     padding-bottom: 0;
     overflow: visible;
 
-    @media(max-width: $responsivenav - 1px) {
+    @media (max-width: $responsivenav - 1px) {
       padding: 0;
     }
   }
+}
 
-  .site-branding {
-    overflow: hidden;
-    float: left;
+.site-branding {
+  float: left;
+}
 
-    .site-title {
-      overflow: hidden;
-      margin: 0;
+.site-title {
+  margin: 0;
 
-      // The point where logo touches the left side
-      @media(max-width: $grid-base-size+20) {
-        margin-left: 10px;
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-right: 0;
-      }
+  // The point where logo touches the left side
+  @media (max-width: $grid-base-size+20) {
+    margin-left: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+  }
 
-      // The point where navigation turns into mobile nav
-      @media(max-width: $responsivenav - 1px) {
-        margin-left: 15px;
-        margin-top: 10px;
-        margin-bottom: 0;
-        margin-right: 0;
-      }
+  // The point where navigation turns into mobile nav
+  @media (max-width: $responsivenav - 1px) {
+    margin-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    margin-right: 0;
+  }
 
-      a {
-        svg {
-          fill: #fff;
-          transition: all .77s;
-          position: relative;
-        }
+  a {
+    display: block;
+    position: relative;
 
-        &:hover {
-          svg {
-            fill: $color-fog;
-          }
-        }
+    @media(max-width: $responsivenav) {
+      top: 1rem;
+    }
+
+    svg {
+      fill: #fff;
+      transition: all .22s;
+    }
+
+    &:hover {
+      svg {
+        fill: $color-links;
       }
     }
   }

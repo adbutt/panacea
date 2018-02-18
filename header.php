@@ -49,24 +49,26 @@
             <span id="nav-toggle-label" class="screen-reader-text" aria-label="<?php esc_html_e( 'Menu', 'panacea' ); ?>"><?php esc_html_e( 'Menu', 'panacea' ); ?></span>
           </button>
 
-          <nav id="nav" role="navigation">
+          <div class="main-navigation-wrapper" id="main-navigation-wrapper">
+            <nav id="nav" role="navigation">
 
-            <?php wp_nav_menu( array(
-              'theme_location'    => 'primary',
-              'container'         => false,
-              'depth'             => 4,
-              'menu_class'        => 'menu-items',
-              'menu_id'           => 'main-menu',
-              'echo'              => true,
-              'fallback_cb'       => 'Panacea_Walker::fallback',
-              'items_wrap'        => '<ul class="%2$s" id="%1$s">%3$s</ul>',
-              'walker'            => new Panacea_Walker(),
-            ) ); ?>
+              <?php wp_nav_menu( array(
+                'theme_location'    => 'primary',
+                'container'         => false,
+                'depth'             => 4,
+                'menu_class'        => 'menu-items',
+                'menu_id'           => 'main-menu',
+                'echo'              => true,
+                'fallback_cb'       => 'Panacea_Walker::fallback',
+                'items_wrap'        => '<ul class="%2$s" id="%1$s">%3$s</ul>',
+                'walker'            => new Panacea_Walker(),
+              ) ); ?>
 
-          </nav><!-- #nav -->
+            </nav><!-- #nav -->
+          </div>
 
         </div><!-- .container -->
       </header>
   </div><!-- .nav-container -->
 
-	<div id="content" class="site-content">
+	<div class="site-content">

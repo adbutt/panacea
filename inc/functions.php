@@ -138,10 +138,10 @@ remove_action( 'wp_head', 'feed_links_extra', 3 ); //remove feed links
 remove_action( 'wp_head', 'feed_links', 2 ); //remove feed links
 
 //Remove WordPress version number
-function crunchify_remove_version() {
+function panacea_remove_version() {
 	return '';
 }
-add_filter('the_generator', 'crunchify_remove_version');
+add_filter('the_generator', 'panacea_remove_version');
 
 //remove query strings from static resources (js/css version no's)
 function panacea_cleanup_query_string( $src ){
