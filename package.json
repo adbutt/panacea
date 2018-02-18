@@ -93,6 +93,7 @@
             "./node_modules/moveto/dist/moveTo.js",
             "./node_modules/what-input/dist/what-input.js",
             "./src/js/src/navigation.js",
+            "./src/js/src/headroom.js",
             "./src/js/src/scripts.js"
         ],
         "babelJs": [

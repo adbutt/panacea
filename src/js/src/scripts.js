@@ -1,12 +1,21 @@
 /**
  * Panacea theme JavaScript.
  */
+// grab an element
+var myElement = document.querySelector('header')
+// construct an instance of Headroom, passing the element
+var headroom = new Headroom(myElement, {
+  'offset': 205,
+  'tolerance': 5
+})
+// initialise
+headroom.init()
 
 // jQuery start
-(function ($) {
+;(function ($) {
   // Hide or show the "back to top" link
   $(window).scroll(function () {
-  // Back to top
+    // Back to top
     var offset = 300 // Browser window scroll (in pixels) after which the "back to top" link is shown
     var offsetOpacity = 1200 // Browser window scroll (in pixels) after which the link opacity is reduced
     var scrollTopDuration = 700 // Duration of the top scrolling animation (in ms)

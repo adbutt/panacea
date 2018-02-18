@@ -7,7 +7,7 @@
 
 // Fix overlapping in some mobile devices
 .site-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -70,4 +70,22 @@
       }
     }
   }
+}
+// -----------------------------------------------------------
+// Headroom.js http://wicky.nillia.ms/headroom.js/
+// Hide and show header on scroll
+// -----------------------------------------------------------
+
+.headroom {
+  will-change: transform;
+  transition: transform 200ms linear;
+}
+.headroom--pinned {
+  transform: translateY(0%);
+}
+.headroom--unpinned {
+  transform: translateY(-100%);
+}
+.headroom--not-top {
+  background: $color-fog;
 }
