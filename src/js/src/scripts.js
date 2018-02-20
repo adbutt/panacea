@@ -21,7 +21,6 @@ enquire.register('screen and (min-width: 60em)', [
     // Back to top
     var offset = 300 // Browser window scroll (in pixels) after which the "back to top" link is shown
     var offsetOpacity = 1200 // Browser window scroll (in pixels) after which the link opacity is reduced
-    var scrollTopDuration = 700 // Duration of the top scrolling animation (in ms)
     var linkClass = '.top'
 
     if ($(this).scrollTop() > offset) {
