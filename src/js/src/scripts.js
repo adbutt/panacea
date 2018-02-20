@@ -8,8 +8,11 @@ var headroom = new Headroom(myElement, {
   'offset': 205,
   'tolerance': 5
 })
-// initialise
-headroom.init()
+// initialise if screen is not mobile nav
+enquire.register('screen and (min-width: 60em)', [
+  { match: function () { headroom.init() } },
+  { unmatch: function () { headroom.destroy() } }
+])
 
 // jQuery start
 ;(function ($) {

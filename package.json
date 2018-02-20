@@ -89,6 +89,7 @@
             "./build/js/*.js"
         ],
         "fullJs": [
+            "./node_modules/enquire.js/dist/enquire.js",
             "./src/js/src/skip-link-focus-fix.js",
             "./node_modules/moveto/dist/moveTo.js",
             "./node_modules/what-input/dist/what-input.js",
@@ -107,13 +108,14 @@
         "siteIcon": "./public/img/site/favicon.*"
     },
     "dependencies": {
+        "enquire.js": "^2.1.6",
         "flexboxgrid": "^6.3.1",
         "fontfaceobserver": "^2.0.5",
         "hamburgers": "^0.9.1",
         "jeet": "^7.2.0",
+        "moveto": "^1.7.1",
         "normalize.css": "^5.0.0",
         "tiny-cookie": "^1.0.1",
-        "moveto": "^1.7.1",
         "what-input": "^5.0.4"
     },
     "devDependencies": {
@@ -156,10 +158,10 @@
         "gulp-sourcemaps": "^2.2.1",
         "gulp-streamify": "1.0.2",
         "gulp-uglify": "^1.5.4",
+        "gulp-util": "^3.0.8",
         "moment": "^2.14.1",
         "pa11y": "^4.11.0",
-        "vinyl-source-stream": "^1.1.0",
-        "gulp-util": "^3.0.8"
+        "vinyl-source-stream": "^1.1.0"
     },
     "scripts": {
         "start": "gulp",
